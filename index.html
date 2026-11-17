@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080d0a">
+  <meta name="description" content="TypeFlow: a quiet place to practice touch typing and code typing. Track speed, accuracy, and improvement.">
+  <title>TypeFlow — Find your flow.</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script defer src="assets/app.js"></script>
+</head>
+<body data-page="test">
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="TypeFlow home"><span class="brand-mark" aria-hidden="true">⌨</span>type<span class="accent">flow</span><span class="brand-period">.</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link active" aria-current="page">test</a>
+        <a href="practice.html" class="nav-link">practice</a>
+        <a href="progress.html" class="nav-link">progress</a>
+        <a href="about.html" class="nav-link">about</a>
+      </nav>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme" title="Switch color theme">☼</button>
+    </header>
+
+    <main>
+      <div class="intro intro-test"><p class="eyebrow"><span class="online-dot"></span> a better way to practice</p><h1>find your <em>flow.</em></h1><p>Less noise. More progress. Build speed and accuracy, one keystroke at a time.</p></div>
+
+      <section class="test-app" aria-label="Typing test">
+        <div class="settings-bar">
+          <div class="settings-cluster" role="group" aria-label="Text type">
+            <span class="settings-icon" aria-hidden="true">⌘</span>
+            <button class="setting selected" type="button" data-mode="words" aria-pressed="true">words</button>
+            <button class="setting" type="button" data-mode="quotes" aria-pressed="false">quotes</button>
+            <button class="setting" type="button" data-mode="code" aria-pressed="false">code</button>
+          </div>
+          <div class="settings-divider" id="test-type-divider" aria-hidden="true"></div>
+          <div class="settings-cluster" id="test-type-options" role="group" aria-label="Test type">
+            <button class="setting selected" type="button" data-test-type="time" aria-pressed="true">time</button>
+            <button class="setting" type="button" data-test-type="words" aria-pressed="false">words</button>
+          </div>
+          <div class="settings-divider" id="test-length-divider" aria-hidden="true"></div>
+          <div class="settings-cluster" id="time-options" role="group" aria-label="Test duration">
+            <button class="setting" type="button" data-duration="15" aria-pressed="false">15</button>
+            <button class="setting selected" type="button" data-duration="30" aria-pressed="true">30</button>
+            <button class="setting" type="button" data-duration="60" aria-pressed="false">60</button>
+            <span class="settings-suffix">sec</span>
+          </div>
+          <div class="settings-cluster hidden" id="word-options" role="group" aria-label="Number of words">
+            <button class="setting" type="button" data-word-goal="10" aria-pressed="false">10</button>
+            <button class="setting selected" type="button" data-word-goal="25" aria-pressed="true">25</button>
+            <button class="setting" type="button" data-word-goal="50" aria-pressed="false">50</button>
+            <button class="setting" type="button" data-word-goal="100" aria-pressed="false">100</button>
+            <span class="settings-suffix">words</span>
+          </div>
+          <div class="settings-cluster hidden quote-options" id="quote-options" role="group" aria-label="Quote length">
+            <button class="setting" type="button" data-quote-length="all" aria-pressed="false">all</button>
+            <button class="setting" type="button" data-quote-length="short" aria-pressed="false">short</button>
+            <button class="setting selected" type="button" data-quote-length="medium" aria-pressed="true">medium</button>
+            <button class="setting" type="button" data-quote-length="long" aria-pressed="false">long</button>
+            <button class="setting" type="button" data-quote-length="thicc" aria-pressed="false" title="Extra-long passages (601+ characters)">thicc</button>
+          </div>
+        </div>
+
+        <div class="language-picker hidden" id="language-picker" role="group" aria-label="Programming language">
+          <span>language</span>
+          <button data-language="javascript" class="lang-chip selected" aria-pressed="true" type="button">JavaScript</button>
+          <button data-language="python" class="lang-chip" aria-pressed="false" type="button">Python</button>
+          <button data-language="cpp" class="lang-chip" aria-pressed="false" type="button">C++</button>
+          <button data-language="html" class="lang-chip" aria-pressed="false" type="button">HTML</button>
+          <button data-language="css" class="lang-chip" aria-pressed="false" type="button">CSS</button>
+        </div>
+
+        <div class="live-stats" aria-live="off">
+          <div class="live-stat"><span id="timer-label">time</span><strong id="timer">30</strong></div>
+          <div class="live-stat"><span>wpm</span><strong id="wpm">0</strong></div>
+          <div class="live-stat"><span>accuracy</span><strong id="accuracy">100%</strong></div>
+          <div class="live-stat"><span>errors</span><strong id="errors">0</strong></div>
+          <div class="live-stat hidden" id="words-stat"><span>words</span><strong id="words-progress">0 / 25</strong></div>
+          <span class="typing-status" id="typing-status">ready when you are</span>
+        </div>
+
+        <div class="typing-stage" id="typing-stage" role="group" aria-label="Typing area; click to type">
+          <div class="typing-text" id="typing-text" aria-hidden="true"></div>
+          <textarea id="typing-input" class="typing-input" rows="4" aria-label="Type the displayed text here" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+          <div class="stage-overlay" id="stage-overlay" aria-hidden="true"><span class="overlay-key">⌨</span> click here or start typing</div>
+        </div>
+
+        <div class="stage-actions">
+          <button type="button" id="restart-button" class="reset-button" title="Restart typing test"><span aria-hidden="true">↻</span> restart test</button>
+          <div class="caret-controls" role="group" aria-label="Caret movement speed">
+            <span>caret</span>
+            <button type="button" data-caret-motion="instant" aria-pressed="false" title="No animation, position updates instantly">instant</button>
+            <button type="button" class="selected" data-caret-motion="fast" aria-pressed="true" title="Responsive motion with a very short transition">fast</button>
+            <button type="button" data-caret-motion="smooth" aria-pressed="false" title="More noticeable smoothing">smooth</button>
+          </div>
+          <p class="microcopy">Your progress stays on this device. <a href="progress.html">view stats ↗</a></p>
+        </div>
+        <div class="shortcuts"><span>tip</span> <span id="typing-tip" class="typing-tip-text">focus on accuracy first. speed comes naturally.</span></div>
+      </section>
+
+      <section class="feature-row" aria-label="TypeFlow features">
+        <div><span class="feature-number">01 /</span><h2>your pace</h2><p>Choose timed tests, word counts, or quote lengths — also for code.</p></div>
+        <div><span class="feature-number">02 /</span><h2>your language</h2><p>Practice natural text or real code in five languages.</p></div>
+        <div><span class="feature-number">03 /</span><h2>your progress</h2><p>Track every session and watch your typing improve.</p></div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>© 2026 typeflow · built for better digital skills</span><a href="about.html">a little contribution to SDG 4 ↗</a></footer>
+  </div>
+
+  <div class="modal-backdrop hidden" id="result-modal" role="dialog" aria-modal="true" aria-labelledby="result-title">
+    <div class="result-card"><button class="close-modal" id="close-result" type="button" aria-label="Close results">×</button>
+      <p class="eyebrow">SESSION COMPLETE</p><h2 id="result-title">nice flow.</h2><p class="result-subtitle">Another step forward. Keep going. <span id="result-context"></span></p>
+      <div class="result-metrics"><div><span>wpm</span><strong id="result-wpm">0</strong></div><div><span>accuracy</span><strong id="result-accuracy">100%</strong></div><div><span>errors</span><strong id="result-errors">0</strong></div></div>
+      <div class="result-buttons"><button class="primary-button" id="try-again" type="button">try again ↻</button><a class="outline-button" href="progress.html">see progress ↗</a></div>
+    </div>
+  </div>
+</body>
+</html>
